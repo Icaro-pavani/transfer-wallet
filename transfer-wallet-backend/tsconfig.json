@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "noImplicitAny": true
+  },
+  "include": ["src/**/*", "prisma"],
+  "ts-node": {
+    "esm": true
+  }
+}
