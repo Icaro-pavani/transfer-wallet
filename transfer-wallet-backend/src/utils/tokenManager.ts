@@ -3,11 +3,11 @@ import { unauthorizedError } from "../middlewares/handleErrorsMiddleware.js";
 
 const secretKey = process.env.JWT_KEY;
 
-export type JWTPayload = { id: string };
+export type JWTPayload = { id: number };
 
 function generateToken(id: number) {
   const data = { id };
-  const config = { expiresIn: 60 };
+  const config = { expiresIn: 60*10 };
   return jwt.sign(data, secretKey, config);
 }
 

@@ -5,6 +5,10 @@ async function findByUsername(username: string) {
   return prisma.users.findUnique({ where: { username } });
 }
 
+async function findById(id: number) {
+  return prisma.users.findUnique({ where: { id } });
+}
+
 async function create(userInfo: UserData) {
   const startBalance = 10000;
   const { username, password } = userInfo;
@@ -21,6 +25,6 @@ async function create(userInfo: UserData) {
   });
 }
 
-const userRepository = { findByUsername, create };
+const userRepository = { findByUsername, findById, create };
 
 export default userRepository;
