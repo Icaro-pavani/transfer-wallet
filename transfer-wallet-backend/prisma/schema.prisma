@@ -38,4 +38,6 @@ model Transactions {
   creditedAccount   Accounts @relation(name: "CashInAccount", fields: [creditedAccountId], references: [id])
   value             Int
   createdAt         DateTime @default(now())
+
+  @@map("transactions")
 }

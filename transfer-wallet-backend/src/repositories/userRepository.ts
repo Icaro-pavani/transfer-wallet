@@ -6,7 +6,7 @@ async function findByUsername(username: string) {
 }
 
 async function findById(id: number) {
-  return prisma.users.findUnique({ where: { id } });
+  return prisma.users.findUnique({ where: { id }, include: { account: true } });
 }
 
 async function create(userInfo: UserData) {

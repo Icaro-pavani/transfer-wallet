@@ -1,19 +1,14 @@
-import { notFoundError } from "../middlewares/handleErrorsMiddleware.js";
 import accountRepository from "../repositories/accountRepository.js";
-import userRepository from "../repositories/userRepository.js";
+import checkUser from "../utils/checkUser.js";
 
 async function getAccountInfo(userId: number) {
-  const user = await userRepository.findById(userId);
+  const user = await checkUser(userId);
 
-  if (!user) {
-    throw notFoundError("User not found!");
-  }
-
-  const accountInfo = await accountRepository.findbyId(user.accountId);
+  //   const accountInfo = await accountRepository.findbyId(user.accountId);
 
   return {
     username: user.username,
-    balance: accountInfo.balance,
+    balance: user.account.balance,
   };
 }
 
