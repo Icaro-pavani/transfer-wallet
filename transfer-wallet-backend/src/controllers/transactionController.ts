@@ -11,3 +11,20 @@ export async function addTransaction(req: AuthenticatedRequest, res: Response) {
 
   res.sendStatus(201);
 }
+
+export async function viewTransactions(
+  req: AuthenticatedRequest,
+  res: Response
+) {
+  const userId = req.id;
+  const type = req.query.type as string;
+  const date = req.query.date as string;
+
+  const transactions = await transactionService.getAllTransactions(
+    userId,
+    type,
+    date
+  );
+
+  res.status(200).send({ transactions });
+}

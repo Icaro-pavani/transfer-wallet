@@ -3,6 +3,7 @@ import {
   notFoundError,
   unauthorizedError,
 } from "../middlewares/handleErrorsMiddleware.js";
+import accountRepository from "../repositories/accountRepository.js";
 import transactionRepository from "../repositories/transactionRepository.js";
 import userRepository from "../repositories/userRepository.js";
 import { TransactionData } from "../schemas/transcationSchema.js";
@@ -35,10 +36,38 @@ async function createTransaction(
     +value
   );
 
-
   await transactionRepository.update(transaction.id, +value);
 }
 
-const transactionService = { createTransaction };
+async function getAllTransactions(
+  userId: number,
+  transactionType: string,
+  date: string | null
+) {
+  await checkUser(userId);
+
+  if (
+    !!date &&
+    (transactionType === "creditedAccountId" ||
+      transactionType === "debitedAccountId")
+  ) {
+    return await transactionRepository.findByDateAndType(
+      userId,
+      date,
+      transactionType
+    );
+  } else if (!!date) {
+    return await transactionRepository.findByDate(userId, date);
+  } else if (
+    transactionType === "creditedAccountId" ||
+    transactionType === "debitedAccountId"
+  ) {
+    return await transactionRepository.findByType(userId, transactionType);
+  }
+
+  return await transactionRepository.findAll(userId);
+}
+
+const transactionService = { createTransaction, getAllTransactions };
 
 export default transactionService;
