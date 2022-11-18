@@ -1,6 +1,7 @@
 import { AxiosError } from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import api from "../../services/api";
 import "./style.css";
 
@@ -9,7 +10,7 @@ interface FormData {
   password: string;
 }
 
-export default function SignUp() {
+export default function SignIn() {
   const [userInfo, setUserInfo] = useState<FormData>({
     username: "",
     password: "",
@@ -17,9 +18,7 @@ export default function SignUp() {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const navigate = useNavigate();
-
-  const checkCapitalLetter = /^(?=.*[A-Z])/;
-  const checkNumber = /^(?=.*[0-9])/;
+  const { signIn } = useAuth();
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -30,8 +29,12 @@ export default function SignUp() {
     event.preventDefault();
 
     try {
-      await api.userSignUp(userInfo);
-      navigate("/");
+      const {
+        data: { token },
+      } = await api.userSignIn(userInfo);
+      console.log(token);
+      signIn(token);
+      navigate("/main");
     } catch (error: Error | AxiosError | any) {
       if (error.response) {
         setErrorMessage(error.response.data);
@@ -65,25 +68,11 @@ export default function SignUp() {
           onChange={handleChange}
           required
         />
-        <ul>
-          <p>Senha deve ser composta por:</p>
-          <li className={userInfo.password.length >= 8 ? "done" : ""}>
-            pelo menos 8 caracteres
-          </li>
-          <li className={checkNumber.test(userInfo.password) ? "done" : ""}>
-            deve ter um número
-          </li>
-          <li
-            className={checkCapitalLetter.test(userInfo.password) ? "done" : ""}
-          >
-            dever possuir uma letra maiúscula
-          </li>
-        </ul>
         <button type="submit">Cadastrar</button>
         <p className="error">{errorMessage}</p>
       </form>
-      <Link className="link" to="/">
-        Já possui cadastro? Clique aqui para se logar!
+      <Link className="link" to="/sign-up">
+        Não possui cadastro? Cadastre-se!
       </Link>
     </div>
   );
