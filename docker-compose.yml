@@ -1,0 +1,42 @@
+services:
+  transfer-wallet-postgres:
+    image: postgres:13-alpine
+    container_name: transfer-wallet-postgres
+    restart: always
+    ports:
+      - 1234:5432
+    env_file:
+      - transfer-wallet-backend/.env
+    volumes:
+      - transfer-wallet-postgres-data:/var/lib/postgresql/data
+
+  transfer-wallet:
+    build: ./transfer-wallet-backend
+    container_name: transfer-wallet
+    ports:
+      - 5000:5000
+    depends_on:
+      - transfer-wallet-postgres
+    env_file:
+      - transfer-wallet-backend/.env
+
+  react-transfer-wallet:
+    container_name: react-transfer-wallet
+    build: ./transfer-wallet-front-end
+    volumes:
+      - build_react:/var/www/html
+
+  nginx-transfer-wallet:
+    container_name: nginx-transfer-wallet
+    build: ./transfer-wallet-backend/nginx
+    ports:
+      - 80:80
+    volumes:
+      - build_react:/var/www/html
+    depends_on:
+      - transfer-wallet-postgres
+      - transfer-wallet
+
+volumes:
+  transfer-wallet-postgres-data:
+  build_react:
