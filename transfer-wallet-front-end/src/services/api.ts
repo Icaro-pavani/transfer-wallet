@@ -4,13 +4,13 @@ const baseAPI = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
-// function getConfig(token: string) {
-//   return {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   };
-// }
+function getConfig(token: string) {
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+}
 
 interface UserData {
   username: string;
@@ -25,6 +25,46 @@ async function userSignIn(signInData: UserData) {
   return baseAPI.post<{ token: string }>("/auth", signInData);
 }
 
-const api = { userSignUp, userSignIn };
+export interface UsersInfo {
+  username: string;
+  balance: number;
+}
+
+async function getUserInfos(token: string) {
+  const config = getConfig(token);
+  return baseAPI.get<{ account: UsersInfo }>("/account", config);
+}
+
+export interface TransactionsData {
+  id: number;
+  debitedAccountId: number;
+  creditedAccountId: number;
+  value: number;
+  createdAt: string;
+  creditedAccount: {
+    Users: {
+      username: string;
+    };
+  };
+  debitedAccount: {
+    Users: {
+      username: string;
+    };
+  };
+}
+
+async function getTransactions(
+  token: string,
+  date: string = "",
+  type: string = ""
+) {
+  const config = getConfig(token);
+  return baseAPI.get<{ transactions: TransactionsData[] }>(
+    `/transaction?date=${date}&type=${type}`,
+    config
+  );
+}
+
+const api = { userSignUp, userSignIn, getUserInfos, getTransactions };
 
 export default api;

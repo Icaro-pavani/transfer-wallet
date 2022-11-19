@@ -65,21 +65,29 @@ export default function SignUp() {
           onChange={handleChange}
           required
         />
-        <ul>
+        <ul className="bullet-list">
           <p>Senha deve ser composta por:</p>
-          <li className={userInfo.password.length >= 8 ? "done" : ""}>
+          <li className={userInfo.password.length >= 8 ? "done list" : "list"}>
             pelo menos 8 caracteres
           </li>
-          <li className={checkNumber.test(userInfo.password) ? "done" : ""}>
+          <li
+            className={
+              checkNumber.test(userInfo.password) ? "done list" : "list"
+            }
+          >
             deve ter um número
           </li>
           <li
-            className={checkCapitalLetter.test(userInfo.password) ? "done" : ""}
+            className={
+              checkCapitalLetter.test(userInfo.password) ? "done list" : "list"
+            }
           >
             dever possuir uma letra maiúscula
           </li>
         </ul>
-        <button type="submit">Cadastrar</button>
+        <button className="submit" type="submit">
+          Cadastrar
+        </button>
         <p className="error">{errorMessage}</p>
       </form>
       <Link className="link" to="/">

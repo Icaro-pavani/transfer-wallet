@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../services/api";
@@ -18,7 +18,13 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const navigate = useNavigate();
-  const { signIn } = useAuth();
+  const { signIn, token } = useAuth();
+
+  useEffect(() => {
+    if (token) {
+      navigate("/main");
+    }
+  }, [token, navigate]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -32,7 +38,6 @@ export default function SignIn() {
       const {
         data: { token },
       } = await api.userSignIn(userInfo);
-      console.log(token);
       signIn(token);
       navigate("/main");
     } catch (error: Error | AxiosError | any) {
@@ -45,7 +50,7 @@ export default function SignIn() {
   }
 
   return (
-    <div className="signUpContainer">
+    <div className="signInContainer">
       <h1>Transfer Wallet</h1>
       <h2>Cadastro</h2>
       <form onSubmit={handleSubmit}>
@@ -68,7 +73,9 @@ export default function SignIn() {
           onChange={handleChange}
           required
         />
-        <button type="submit">Cadastrar</button>
+        <button className="submit" type="submit">
+          Cadastrar
+        </button>
         <p className="error">{errorMessage}</p>
       </form>
       <Link className="link" to="/sign-up">
