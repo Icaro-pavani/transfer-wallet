@@ -23,7 +23,7 @@ model Users {
 model Accounts {
   id              Int            @id @default(autoincrement())
   balance         Int
-  Users           Users[]
+  Users           Users?
   cashOutAccounts Transactions[] @relation("CashOutAccount")
   cashInAccounts  Transactions[] @relation("CashInAccount")
 

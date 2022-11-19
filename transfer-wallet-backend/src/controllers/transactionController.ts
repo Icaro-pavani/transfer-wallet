@@ -18,12 +18,14 @@ export async function viewTransactions(
 ) {
   const userId = req.id;
   const type = req.query.type as string;
-  const date = req.query.date as string;
+  const initDate = req.query.initDate as string;
+  const endDate = req.query.endDate as string;
 
   const transactions = await transactionService.getAllTransactions(
     userId,
     type,
-    date
+    initDate,
+    endDate
   );
 
   res.status(200).send({ transactions });

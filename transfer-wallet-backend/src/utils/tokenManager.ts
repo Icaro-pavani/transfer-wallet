@@ -7,7 +7,7 @@ export type JWTPayload = { id: number };
 
 function generateToken(id: number) {
   const data = { id };
-  const config = { expiresIn: 60*10 };
+  const config = { expiresIn: 60*60*24 };
   return jwt.sign(data, secretKey, config);
 }
 

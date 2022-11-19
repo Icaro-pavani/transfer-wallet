@@ -42,22 +42,25 @@ async function createTransaction(
 async function getAllTransactions(
   userId: number,
   transactionType: string,
-  date: string | null
+  initDate: string | null,
+  endDate: string | null
 ) {
   await checkUser(userId);
 
   if (
-    !!date &&
+    !!initDate &&
+    !!endDate &&
     (transactionType === "creditedAccountId" ||
       transactionType === "debitedAccountId")
   ) {
     return await transactionRepository.findByDateAndType(
       userId,
-      date,
+      initDate,
+      endDate,
       transactionType
     );
-  } else if (!!date) {
-    return await transactionRepository.findByDate(userId, date);
+  } else if (!!initDate && !!endDate) {
+    return await transactionRepository.findByDate(userId, initDate, endDate);
   } else if (
     transactionType === "creditedAccountId" ||
     transactionType === "debitedAccountId"

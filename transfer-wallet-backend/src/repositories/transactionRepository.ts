@@ -48,10 +48,13 @@ async function findAll(userId: number) {
   });
 }
 
-async function findByDate(userId: number, date: string) {
+async function findByDate(userId: number, initDate: string, endDate: string) {
   return prisma.transactions.findMany({
     where: {
-      createdAt: new Date(date),
+      createdAt: {
+        gte: new Date(initDate),
+        lte: new Date(endDate),
+      },
       OR: [{ creditedAccountId: userId }, { debitedAccountId: userId }],
     },
     include: {
@@ -83,12 +86,16 @@ async function findByType(userId: number, type: TransactionType) {
 
 async function findByDateAndType(
   userId: number,
-  date: string,
+  initDate: string,
+  endDate: string,
   type: TransactionType
 ) {
   return prisma.transactions.findMany({
     where: {
-      createdAt: new Date(date),
+      createdAt: {
+        gte: new Date(initDate),
+        lte: new Date(endDate),
+      },
       [type]: userId,
     },
     include: {
