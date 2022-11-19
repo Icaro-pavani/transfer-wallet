@@ -1,0 +1,96 @@
+.cash-out-container {
+  background-color: #9e29ff;
+}
+
+.cash-out-title {
+  text-align: center;
+  font-style: oblique;
+  text-decoration: underline;
+}
+
+.cash-out-header {
+  position: relative;
+}
+
+.back-button {
+  color: #fff;
+  font-size: 36px;
+  position: absolute;
+  bottom: 0px;
+  left: 15%;
+  cursor: pointer;
+}
+
+.username-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 10px 15%;
+}
+
+.username-label {
+  font-size: 24px;
+  width: 100px;
+  margin: 0;
+}
+
+.username {
+  max-width: 400px;
+  background-color: #9e29ff;
+  text-align: center;
+  font-size: 24px;
+  height: 60px;
+  border: none;
+}
+
+.username:focus {
+  outline: none;
+}
+
+.value-field {
+  background-color: rgb(31, 31, 31);
+  padding: 20px 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px 20px 0 0;
+}
+
+.value-title {
+  text-align: center;
+}
+
+.value-input {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.cash {
+  border: none;
+  color: #fff;
+  text-align: center;
+  font-size: 36px;
+}
+
+.cash:focus {
+  outline: none;
+}
+
+.confirm-button {
+  width: 100%;
+  height: 54px;
+  font-size: 16px;
+  line-height: 38px;
+  color: #fff;
+  background-color: rgb(161, 161, 161);
+  border: none;
+  border-radius: 20px;
+  margin-top: 40px;
+}
+
+.confirm-button:hover {
+  background-color: #9e29ff;
+  cursor: pointer;
+}

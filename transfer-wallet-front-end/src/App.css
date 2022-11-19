@@ -5,3 +5,76 @@
 body {
   background-color: rgb(31, 31, 31);
 }
+
+h1 {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 3em;
+  margin-bottom: 50px;
+  padding-top: 50px;
+}
+
+h2 {
+  width: 100%;
+  color: #fff;
+  font-size: 2em;
+}
+
+h3 {
+  color: #fff;
+  font-size: 28px;
+}
+
+h4 {
+  color: rgb(214, 214, 214);
+  font-size: 18px;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0 30px 0;
+}
+
+label {
+  width: 100%;
+  font-size: 14px;
+  line-height: 20px;
+  color: #fff;
+  margin-top: 20px;
+}
+
+input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgb(161, 161, 161);
+  color: rgb(197, 193, 193);
+  background-color: rgb(31, 31, 31);
+  height: 40px;
+  font-size: 18px;
+  line-height: 38px;
+}
+
+input::placeholder {
+  color: rgb(161, 161, 161);
+}
+
+input:focus {
+  outline: 2px solid rgb(161, 161, 161);
+}
+
+p {
+  font-size: 18px;
+  color: #fff;
+  width: 100%;
+}
+
+.link {
+  color: rgb(29, 233, 121);
+  text-align: center;
+  font-size: 18px;
+}

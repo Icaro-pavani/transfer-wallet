@@ -89,7 +89,9 @@ export default function MainPage() {
           <p className="balance-phrase">Seu balanço é</p>
           <h5 className="value">{valueToCurrency(userInfo.balance)}</h5>
         </div>
-        <button className="cash-out">Cash-out</button>
+        <button className="cash-out" onClick={() => navigate("/cash-out")}>
+          Cash-out
+        </button>
       </div>
       <ul className="transactions">
         <h3>Transações</h3>

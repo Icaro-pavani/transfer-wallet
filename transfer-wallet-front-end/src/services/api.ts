@@ -66,6 +66,22 @@ async function getTransactions(
   );
 }
 
-const api = { userSignUp, userSignIn, getUserInfos, getTransactions };
+export interface CashOutData {
+  creditedUsername: string;
+  value: number;
+}
+
+async function postCashOut(token: string, cashOutInfo: CashOutData) {
+  const config = getConfig(token);
+  await baseAPI.post("/transaction", cashOutInfo, config);
+}
+
+const api = {
+  userSignUp,
+  userSignIn,
+  getUserInfos,
+  getTransactions,
+  postCashOut,
+};
 
 export default api;

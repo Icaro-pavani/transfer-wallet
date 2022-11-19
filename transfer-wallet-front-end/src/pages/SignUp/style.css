@@ -6,55 +6,6 @@
   padding: 10px 15%;
 }
 
-h1 {
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  font-size: 3em;
-  margin-bottom: 50px;
-}
-
-h2 {
-  width: 100%;
-  color: #fff;
-  font-size: 2em;
-}
-
-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 30px 0 30px 0;
-}
-
-label {
-  width: 100%;
-  font-size: 14px;
-  line-height: 20px;
-  color: #fff;
-  margin-top: 20px;
-}
-
-input {
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid rgb(161, 161, 161);
-  color: rgb(197, 193, 193);
-  background-color: rgb(31, 31, 31);
-  height: 40px;
-  font-size: 16px;
-  line-height: 38px;
-}
-
-input::placeholder {
-  color: rgb(161, 161, 161);
-}
-
-input:focus {
-  outline: 2px solid rgb(161, 161, 161);
-}
-
 .bullet-list {
   width: 100%;
   margin-top: 10px;
@@ -62,9 +13,8 @@ input:focus {
   list-style-position: inside;
 }
 
-p,
 .list {
-  font-size: 14px;
+  font-size: 18px;
   color: #fff;
   width: 100%;
 }
@@ -86,10 +36,8 @@ p,
   cursor: pointer;
 }
 
-.done,
-.link {
+.done {
   color: rgb(29, 233, 121);
-  text-align: center;
 }
 
 .error {
