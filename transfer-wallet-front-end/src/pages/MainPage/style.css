@@ -38,6 +38,7 @@ h3 {
 h4 {
   color: rgb(214, 214, 214);
   font-size: 18px;
+  width: 100%;
 }
 
 .balance-phrase {
@@ -80,11 +81,11 @@ h4 {
   margin-bottom: 30px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .filter {
-  font-size: 18px;
+  font-size: 22px;
   color: #fff;
   width: 100%;
   margin-top: 30px;
@@ -93,6 +94,7 @@ h4 {
 
 .income,
 .expense {
+  width: 100px;
   font-size: 18px;
   border: none;
   padding: 10px;
@@ -111,4 +113,33 @@ h4 {
 .expense.select {
   background-color: #f83e3e;
   cursor: pointer;
+}
+
+.clean-button {
+  background-color: #9e29ff;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #fff;
+  padding: 10px;
+}
+
+.date-range {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.calendar-date {
+  width: 110px;
+  font-size: 14px;
+  color-scheme: dark;
+}
+
+.label-date-input {
+  width: 25px;
+  margin: 0;
+  margin-right: 5px;
 }

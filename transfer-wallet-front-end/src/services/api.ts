@@ -55,12 +55,13 @@ export interface TransactionsData {
 
 async function getTransactions(
   token: string,
-  date: string = "",
+  initDate: string = "",
+  endDate: string = "",
   type: string = ""
 ) {
   const config = getConfig(token);
   return baseAPI.get<{ transactions: TransactionsData[] }>(
-    `/transaction?date=${date}&type=${type}`,
+    `/transaction?initDate=${initDate}&endDate=${endDate}&type=${type}`,
     config
   );
 }

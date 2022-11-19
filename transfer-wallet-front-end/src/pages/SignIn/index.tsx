@@ -52,7 +52,7 @@ export default function SignIn() {
   return (
     <div className="signInContainer">
       <h1>Transfer Wallet</h1>
-      <h2>Cadastro</h2>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input
@@ -60,7 +60,7 @@ export default function SignIn() {
           name="username"
           type="text"
           minLength={3}
-          placeholder="Adicione um nome de usuário"
+          placeholder="Insira nome de usuário"
           onChange={handleChange}
           required
         />
@@ -69,12 +69,12 @@ export default function SignIn() {
           id="password"
           name="password"
           type="password"
-          placeholder="Adicione uma senha"
+          placeholder="Insira a senha"
           onChange={handleChange}
           required
         />
         <button className="submit" type="submit">
-          Cadastrar
+          Entrar
         </button>
         <p className="error">{errorMessage}</p>
       </form>
