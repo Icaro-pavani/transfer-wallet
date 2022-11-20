@@ -11,7 +11,7 @@ export default async function tokenHandler(
     throw unprocessableError("Missing headers!");
   }
 
-  const token: string = req.headers.authorization.replace("Bearer ", "").trim();
+  const token: string = req.headers.authorization.replace("Bearer", "").trim();
 
   if (!token) {
     throw unprocessableError("Token not found!");

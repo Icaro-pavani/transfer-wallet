@@ -1,0 +1,25 @@
+services:
+  transfer-wallet-postgres-test:
+    image: postgres:13-alpine
+    container_name: transfer-wallet-postgres-test
+    restart: always
+    ports:
+      - 1234:5432
+    env_file:
+      - .env.test
+    volumes:
+      - transfer-wallet-postgres-data:/var/lib/postgresql/data
+
+  transfer-wallet-test:
+    build: .
+    container_name: transfer-wallet-test
+    ports:
+      - 5000:5000
+    depends_on:
+      - transfer-wallet-postgres-test
+    env_file:
+      - .env.test
+
+volumes:
+  transfer-wallet-postgres-data:
+  build_react:

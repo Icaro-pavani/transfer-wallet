@@ -3,8 +3,8 @@ import jwt from "jsonwebtoken";
 
 export async function cleanDB() {
   await prisma.users.deleteMany({});
-  await prisma.accounts.deleteMany({});
   await prisma.transactions.deleteMany({});
+  await prisma.accounts.deleteMany({});
 }
 
 export async function generateValidToken(id: number) {
