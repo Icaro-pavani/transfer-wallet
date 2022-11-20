@@ -3,7 +3,6 @@ import {
   notFoundError,
   unauthorizedError,
 } from "../middlewares/handleErrorsMiddleware.js";
-import accountRepository from "../repositories/accountRepository.js";
 import transactionRepository from "../repositories/transactionRepository.js";
 import userRepository from "../repositories/userRepository.js";
 import { TransactionData } from "../schemas/transcationSchema.js";
@@ -21,7 +20,7 @@ async function createTransaction(
   }
 
   if (value > user.account.balance) {
-    throw unauthorizedError("Ammount insufficient!");
+    throw unauthorizedError("Amount insufficient!");
   }
 
   const cashInUser = await userRepository.findByUsername(creditedUsername);

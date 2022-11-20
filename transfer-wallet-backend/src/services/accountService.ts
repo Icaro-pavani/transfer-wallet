@@ -1,4 +1,3 @@
-import accountRepository from "../repositories/accountRepository.js";
 import checkUser from "../utils/checkUser.js";
 
 async function getAccountInfo(userId: number) {
